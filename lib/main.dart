@@ -80,7 +80,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void loadMovies() async {
     QuerySnapshot snap =
         await myCollection.orderBy('index').limit(showingTotalMovies).get();
-    showingTotalMovies += 5;
 
     movies = snap.docs
         .map((e) => Movie.fromJson(e.id, e.data() as Map<String, dynamic>))
@@ -106,6 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ? CircularProgressIndicator()
                 : LazyLoadScrollView(
                     onEndOfPage: () {
+                      showingTotalMovies += 5;
                       loadMovies();
                     },
                     child: ReorderableListView(
@@ -168,10 +168,10 @@ class _MyHomePageState extends State<MyHomePage> {
     //
     // await myCollection.doc(movies[newIndex].id).set(movies[oldIndex].toJson());
     // await myCollection.doc(movies[oldIndex].id).set(temp.toJson());
+    _updating = false;
+    loadMovies();
 
-    setState(() {
-      _updating = false;
-    });
+    setState(() {});
   }
 }
 
