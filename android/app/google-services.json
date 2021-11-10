@@ -1,0 +1,76 @@
+{
+  "project_info": {
+    "project_number": "931180612041",
+    "project_id": "craigsdodevelopment",
+    "storage_bucket": "craigsdodevelopment.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931180612041:android:03a21d490a15e1f9e00018",
+        "android_client_info": {
+          "package_name": "com.craigs_do.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931180612041-v53mu7t05dskuri4dh725all04e5eo6c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.craigs_do.app",
+            "certificate_hash": "ffbe5f0dc6fa38aa9c85452d1f64cedf85062bc8"
+          }
+        },
+        {
+          "client_id": "931180612041-f676p5s0db9m1l0vjee19ubmigo0eckr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp3whFdu0YSD6Gqs30Al6WYoM5WuyFYV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931180612041-f676p5s0db9m1l0vjee19ubmigo0eckr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931180612041:android:74477865fd176af4e00018",
+        "android_client_info": {
+          "package_name": "com.example.reorder_list_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931180612041-f676p5s0db9m1l0vjee19ubmigo0eckr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCp3whFdu0YSD6Gqs30Al6WYoM5WuyFYV4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931180612041-f676p5s0db9m1l0vjee19ubmigo0eckr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
