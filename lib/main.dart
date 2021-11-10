@@ -1,6 +1,12 @@
+import 'dart:math';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lazy_load_scrollview/lazy_load_scrollview.dart';
+import 'package:very_good_infinite_list/very_good_infinite_list.dart'
+    as infinite;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +36,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
+class InfiniteList extends StatelessWidget {
+  const InfiniteList({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: infinite.InfiniteList<String>(
+        itemLoader: _itemLoader,
+        builder: infinite.InfiniteListBuilder<String>(
+          success: (context, item) => ListTile(title: Text(item)),
+        ),
+      ),
+    );
+  }
+
+  Future<List<String>?> _itemLoader(int limit, {int start = 0}) async {
+    await Future<void>.delayed(const Duration(seconds: 1));
+    if (start >= 100) return null;
+    if (Random().nextInt(2) == 0) throw Exception('Oops!');
+    if (Random().nextInt(5) == 0) throw infinite.InfiniteListException();
+    return List.generate(limit, (index) => 'Item ${start + index}');
+  }
+}
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
@@ -44,22 +74,41 @@ class _MyHomePageState extends State<MyHomePage> {
   late List<Movie> movies;
 
   bool _updating = false;
+  bool _loadingMovies = true;
+  int showingTotalMovies = 5;
+
+  void loadMovies() async {
+    QuerySnapshot snap =
+        await myCollection.orderBy('index').limit(showingTotalMovies).get();
+    showingTotalMovies += 5;
+
+    movies = snap.docs
+        .map((e) => Movie.fromJson(e.id, e.data() as Map<String, dynamic>))
+        .toList();
+
+    setState(() {
+      _loadingMovies = false;
+    });
+  }
+
+  @override
+  void initState() {
+    loadMovies();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: FutureBuilder<QuerySnapshot>(
-          future: myCollection.orderBy('index').limit(5).get(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              movies = snapshot.data!.docs
-                  .map((e) =>
-                      Movie.fromJson(e.id, e.data() as Map<String, dynamic>))
-                  .toList();
-              return _updating
-                  ? CircularProgressIndicator()
-                  : ReorderableListView(
+        child: Center(
+            child: _updating || _loadingMovies
+                ? CircularProgressIndicator()
+                : LazyLoadScrollView(
+                    onEndOfPage: () {
+                      loadMovies();
+                    },
+                    child: ReorderableListView(
                       onReorder: (oldIndex, newIndex) {
                         setState(() {
                           _updating = true;
@@ -73,11 +122,8 @@ class _MyHomePageState extends State<MyHomePage> {
                                 title: Text(e.name),
                               ))
                           .toList(),
-                    );
-            }
-            return CircularProgressIndicator();
-          },
-        ),
+                    ),
+                  )),
       ),
     );
   }
