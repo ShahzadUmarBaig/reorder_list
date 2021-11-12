@@ -29,6 +29,10 @@ class _$MovieListEventTearOff {
       movies: movies,
     );
   }
+
+  OnEndOfPage onEndOfPage() {
+    return OnEndOfPage();
+  }
 }
 
 /// @nodoc
@@ -40,18 +44,21 @@ mixin _$MovieListEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(List<Movie> movies) moviesFetched,
+    required TResult Function() onEndOfPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -59,18 +66,21 @@ mixin _$MovieListEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(MoviesFetched value) moviesFetched,
+    required TResult Function(OnEndOfPage value) onEndOfPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,6 +176,7 @@ class _$OnReorder implements OnReorder {
   TResult when<TResult extends Object?>({
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(List<Movie> movies) moviesFetched,
+    required TResult Function() onEndOfPage,
   }) {
     return onReorder(oldIndex, newIndex);
   }
@@ -175,6 +186,7 @@ class _$OnReorder implements OnReorder {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
   }) {
     return onReorder?.call(oldIndex, newIndex);
   }
@@ -184,6 +196,7 @@ class _$OnReorder implements OnReorder {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
     required TResult orElse(),
   }) {
     if (onReorder != null) {
@@ -197,6 +210,7 @@ class _$OnReorder implements OnReorder {
   TResult map<TResult extends Object?>({
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(MoviesFetched value) moviesFetched,
+    required TResult Function(OnEndOfPage value) onEndOfPage,
   }) {
     return onReorder(this);
   }
@@ -206,6 +220,7 @@ class _$OnReorder implements OnReorder {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
   }) {
     return onReorder?.call(this);
   }
@@ -215,6 +230,7 @@ class _$OnReorder implements OnReorder {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
     required TResult orElse(),
   }) {
     if (onReorder != null) {
@@ -302,6 +318,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult when<TResult extends Object?>({
     required TResult Function(int oldIndex, int newIndex) onReorder,
     required TResult Function(List<Movie> movies) moviesFetched,
+    required TResult Function() onEndOfPage,
   }) {
     return moviesFetched(movies);
   }
@@ -311,6 +328,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
   }) {
     return moviesFetched?.call(movies);
   }
@@ -320,6 +338,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int oldIndex, int newIndex)? onReorder,
     TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
     required TResult orElse(),
   }) {
     if (moviesFetched != null) {
@@ -333,6 +352,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult map<TResult extends Object?>({
     required TResult Function(OnReorder value) onReorder,
     required TResult Function(MoviesFetched value) moviesFetched,
+    required TResult Function(OnEndOfPage value) onEndOfPage,
   }) {
     return moviesFetched(this);
   }
@@ -342,6 +362,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
   }) {
     return moviesFetched?.call(this);
   }
@@ -351,6 +372,7 @@ class _$MoviesFetched implements MoviesFetched {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(OnReorder value)? onReorder,
     TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
     required TResult orElse(),
   }) {
     if (moviesFetched != null) {
@@ -370,16 +392,130 @@ abstract class MoviesFetched implements MovieListEvent {
 }
 
 /// @nodoc
+abstract class $OnEndOfPageCopyWith<$Res> {
+  factory $OnEndOfPageCopyWith(
+          OnEndOfPage value, $Res Function(OnEndOfPage) then) =
+      _$OnEndOfPageCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$OnEndOfPageCopyWithImpl<$Res> extends _$MovieListEventCopyWithImpl<$Res>
+    implements $OnEndOfPageCopyWith<$Res> {
+  _$OnEndOfPageCopyWithImpl(
+      OnEndOfPage _value, $Res Function(OnEndOfPage) _then)
+      : super(_value, (v) => _then(v as OnEndOfPage));
+
+  @override
+  OnEndOfPage get _value => super._value as OnEndOfPage;
+}
+
+/// @nodoc
+
+class _$OnEndOfPage implements OnEndOfPage {
+  _$OnEndOfPage();
+
+  @override
+  String toString() {
+    return 'MovieListEvent.onEndOfPage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is OnEndOfPage);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int oldIndex, int newIndex) onReorder,
+    required TResult Function(List<Movie> movies) moviesFetched,
+    required TResult Function() onEndOfPage,
+  }) {
+    return onEndOfPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
+  }) {
+    return onEndOfPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int oldIndex, int newIndex)? onReorder,
+    TResult Function(List<Movie> movies)? moviesFetched,
+    TResult Function()? onEndOfPage,
+    required TResult orElse(),
+  }) {
+    if (onEndOfPage != null) {
+      return onEndOfPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(OnReorder value) onReorder,
+    required TResult Function(MoviesFetched value) moviesFetched,
+    required TResult Function(OnEndOfPage value) onEndOfPage,
+  }) {
+    return onEndOfPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
+  }) {
+    return onEndOfPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(OnReorder value)? onReorder,
+    TResult Function(MoviesFetched value)? moviesFetched,
+    TResult Function(OnEndOfPage value)? onEndOfPage,
+    required TResult orElse(),
+  }) {
+    if (onEndOfPage != null) {
+      return onEndOfPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class OnEndOfPage implements MovieListEvent {
+  factory OnEndOfPage() = _$OnEndOfPage;
+}
+
+/// @nodoc
 class _$MovieListStateTearOff {
   const _$MovieListStateTearOff();
 
   _MovieListState call(
       {required Option<List<Movie>> moviesListOption,
       required bool submissionInProgress,
+      required bool lazyLoadingMovies,
+      required int fetchLimit,
       required Option<Either<Error, Unit>> resultOption}) {
     return _MovieListState(
       moviesListOption: moviesListOption,
       submissionInProgress: submissionInProgress,
+      lazyLoadingMovies: lazyLoadingMovies,
+      fetchLimit: fetchLimit,
       resultOption: resultOption,
     );
   }
@@ -393,6 +529,8 @@ mixin _$MovieListState {
   Option<List<Movie>> get moviesListOption =>
       throw _privateConstructorUsedError;
   bool get submissionInProgress => throw _privateConstructorUsedError;
+  bool get lazyLoadingMovies => throw _privateConstructorUsedError;
+  int get fetchLimit => throw _privateConstructorUsedError;
   Option<Either<Error, Unit>> get resultOption =>
       throw _privateConstructorUsedError;
 
@@ -409,6 +547,8 @@ abstract class $MovieListStateCopyWith<$Res> {
   $Res call(
       {Option<List<Movie>> moviesListOption,
       bool submissionInProgress,
+      bool lazyLoadingMovies,
+      int fetchLimit,
       Option<Either<Error, Unit>> resultOption});
 }
 
@@ -425,6 +565,8 @@ class _$MovieListStateCopyWithImpl<$Res>
   $Res call({
     Object? moviesListOption = freezed,
     Object? submissionInProgress = freezed,
+    Object? lazyLoadingMovies = freezed,
+    Object? fetchLimit = freezed,
     Object? resultOption = freezed,
   }) {
     return _then(_value.copyWith(
@@ -436,6 +578,14 @@ class _$MovieListStateCopyWithImpl<$Res>
           ? _value.submissionInProgress
           : submissionInProgress // ignore: cast_nullable_to_non_nullable
               as bool,
+      lazyLoadingMovies: lazyLoadingMovies == freezed
+          ? _value.lazyLoadingMovies
+          : lazyLoadingMovies // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fetchLimit: fetchLimit == freezed
+          ? _value.fetchLimit
+          : fetchLimit // ignore: cast_nullable_to_non_nullable
+              as int,
       resultOption: resultOption == freezed
           ? _value.resultOption
           : resultOption // ignore: cast_nullable_to_non_nullable
@@ -454,6 +604,8 @@ abstract class _$MovieListStateCopyWith<$Res>
   $Res call(
       {Option<List<Movie>> moviesListOption,
       bool submissionInProgress,
+      bool lazyLoadingMovies,
+      int fetchLimit,
       Option<Either<Error, Unit>> resultOption});
 }
 
@@ -472,6 +624,8 @@ class __$MovieListStateCopyWithImpl<$Res>
   $Res call({
     Object? moviesListOption = freezed,
     Object? submissionInProgress = freezed,
+    Object? lazyLoadingMovies = freezed,
+    Object? fetchLimit = freezed,
     Object? resultOption = freezed,
   }) {
     return _then(_MovieListState(
@@ -483,6 +637,14 @@ class __$MovieListStateCopyWithImpl<$Res>
           ? _value.submissionInProgress
           : submissionInProgress // ignore: cast_nullable_to_non_nullable
               as bool,
+      lazyLoadingMovies: lazyLoadingMovies == freezed
+          ? _value.lazyLoadingMovies
+          : lazyLoadingMovies // ignore: cast_nullable_to_non_nullable
+              as bool,
+      fetchLimit: fetchLimit == freezed
+          ? _value.fetchLimit
+          : fetchLimit // ignore: cast_nullable_to_non_nullable
+              as int,
       resultOption: resultOption == freezed
           ? _value.resultOption
           : resultOption // ignore: cast_nullable_to_non_nullable
@@ -497,6 +659,8 @@ class _$_MovieListState implements _MovieListState {
   _$_MovieListState(
       {required this.moviesListOption,
       required this.submissionInProgress,
+      required this.lazyLoadingMovies,
+      required this.fetchLimit,
       required this.resultOption});
 
   @override
@@ -504,11 +668,15 @@ class _$_MovieListState implements _MovieListState {
   @override
   final bool submissionInProgress;
   @override
+  final bool lazyLoadingMovies;
+  @override
+  final int fetchLimit;
+  @override
   final Option<Either<Error, Unit>> resultOption;
 
   @override
   String toString() {
-    return 'MovieListState(moviesListOption: $moviesListOption, submissionInProgress: $submissionInProgress, resultOption: $resultOption)';
+    return 'MovieListState(moviesListOption: $moviesListOption, submissionInProgress: $submissionInProgress, lazyLoadingMovies: $lazyLoadingMovies, fetchLimit: $fetchLimit, resultOption: $resultOption)';
   }
 
   @override
@@ -520,13 +688,17 @@ class _$_MovieListState implements _MovieListState {
                 other.moviesListOption == moviesListOption) &&
             (identical(other.submissionInProgress, submissionInProgress) ||
                 other.submissionInProgress == submissionInProgress) &&
+            (identical(other.lazyLoadingMovies, lazyLoadingMovies) ||
+                other.lazyLoadingMovies == lazyLoadingMovies) &&
+            (identical(other.fetchLimit, fetchLimit) ||
+                other.fetchLimit == fetchLimit) &&
             (identical(other.resultOption, resultOption) ||
                 other.resultOption == resultOption));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, moviesListOption, submissionInProgress, resultOption);
+  int get hashCode => Object.hash(runtimeType, moviesListOption,
+      submissionInProgress, lazyLoadingMovies, fetchLimit, resultOption);
 
   @JsonKey(ignore: true)
   @override
@@ -538,12 +710,18 @@ abstract class _MovieListState implements MovieListState {
   factory _MovieListState(
       {required Option<List<Movie>> moviesListOption,
       required bool submissionInProgress,
+      required bool lazyLoadingMovies,
+      required int fetchLimit,
       required Option<Either<Error, Unit>> resultOption}) = _$_MovieListState;
 
   @override
   Option<List<Movie>> get moviesListOption;
   @override
   bool get submissionInProgress;
+  @override
+  bool get lazyLoadingMovies;
+  @override
+  int get fetchLimit;
   @override
   Option<Either<Error, Unit>> get resultOption;
   @override

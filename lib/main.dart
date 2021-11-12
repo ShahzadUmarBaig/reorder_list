@@ -68,10 +68,24 @@ class _MovieListState extends State<MovieList> {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<MovieListBloc, MovieListState>(
-      listener: (_, state) {},
+      listener: (_, state) {
+        state.resultOption.fold(
+          () => null,
+          (a) => a.fold(
+            (l) => ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Changes could not be saved'))),
+            (r) => ScaffoldMessenger.of(context)
+                .showSnackBar(SnackBar(content: Text('Changes saved!'))),
+          ),
+        );
+      },
       builder: (_, state) {
+        print(state.submissionInProgress);
+        print('revuilding reorderable list');
         return LazyLoadScrollView(
-          onEndOfPage: () {},
+          onEndOfPage: () {
+            context.read<MovieListBloc>().add(MovieListEvent.onEndOfPage());
+          },
           child: state.moviesListOption.fold(
             () => const Center(child: Text('Fetching movies...')),
             (moviesList) {
@@ -81,7 +95,9 @@ class _MovieListState extends State<MovieList> {
                   header: ListTile(
                     title: state.submissionInProgress
                         ? const Text('Please wait ...')
-                        : const Text('Long tap to reorder movies'),
+                        : state.lazyLoadingMovies
+                            ? const Text('Loading more movies')
+                            : const Text('Long tap to reorder movies'),
                   ),
                   onReorder: (oldIndex, newIndex) {
                     context.read<MovieListBloc>().add(MovieListEvent.onReorder(

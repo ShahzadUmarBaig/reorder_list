@@ -6,16 +6,16 @@ class MovieService {
   CollectionReference myCollection =
       FirebaseFirestore.instance.collection("moviesss");
 
-  static List<Movie> movieList = [];
+  // static List<Movie> movieList = [];
 
   Future<List<Movie>> loadMovies(int limit) async {
     QuerySnapshot snap = await myCollection.orderBy('index').limit(limit).get();
 
-    movieList = snap.docs
+    List<Movie> movies = snap.docs
         .map((e) => Movie.fromJson(e.id, e.data() as Map<String, dynamic>))
         .toList();
 
-    return movieList;
+    return movies;
   }
 
   Future<Either<Error, Unit>> reorderMovies({
@@ -34,8 +34,7 @@ class MovieService {
       }
 
       batch.update(myCollection.doc(movies[oldIndex].id), {'index': newIndex});
-    }
-    if (newIndex < oldIndex) {
+    } else if (newIndex < oldIndex) {
       // batch.update(myCollection.doc(movies[newIndex].id), {'index': oldIndex});
       for (int i = newIndex; i < oldIndex; i++) {
         batch.update(myCollection.doc(movies[i].id), {'index': i + 1});

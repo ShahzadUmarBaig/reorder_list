@@ -10,4 +10,6 @@ class MovieListEvent with _$MovieListEvent {
   factory MovieListEvent.moviesFetched({
     required List<Movie> movies,
   }) = MoviesFetched;
+
+  factory MovieListEvent.onEndOfPage() = OnEndOfPage;
 }
